@@ -34,7 +34,7 @@ train = dict(
     label_smoothing=True,  # fixed in code
     shared_embedding=False,  # not used
     device='cuda',
-    gt_file=['../data/train/',],
+    gt_file=['data/train/',],
     num_worker=16,
     # model_dir ='model/test',
     model_dir='models/reconstruct_CDistNet_3_10', 
@@ -57,7 +57,7 @@ val = dict(
     # is_val_gt=True,
 #     image_dir='datasets/NewVersion/val_data',
     gt_file= [
-               './data/test',],
+               'data/test',],
     # gt_file=['datasets/NewVersion/val_data/val_data.txt'],
     # gt_file='../dataset/MJ/MJ_valid/',
     batch_size=197,  # 4gpu 1800
@@ -80,7 +80,7 @@ test = dict(
     image_dir= None,     #if is_test_gt == False,needn't use image_dir
     
     gt_file= [
-               './data/test',],
+               'data/test',],
     batch_size=128,
     num_worker=8,
     model_dir='models/reconstruct_CDistNetv3_3_10',  # load test model
