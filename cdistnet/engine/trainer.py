@@ -220,7 +220,7 @@ def do_train(model,
 
         # eval & save
         start = time.time()
-        if epoch >= 6:
+        if epoch % 2 ==0:
             logger.info("Start eval ...")
             val_loss, val_accu = eval(
                 model=model,
