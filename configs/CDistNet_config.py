@@ -1,11 +1,11 @@
 dst_vocab = 'cdistnet/utils/dict_36.txt'   
-dst_vocab_size = 40
+dst_vocab_size = 112
 rgb2gray =False
 keep_aspect_ratio = False
 width = 128 #100
 height = 32 #32
 max_width = 180
-is_lower = True 
+is_lower = False 
 cnn_num = 2
 leakyRelu = False
 hidden_units = 512
@@ -34,16 +34,13 @@ train = dict(
     label_smoothing=True,  # fixed in code
     shared_embedding=False,  # not used
     device='cuda',
-    gt_file=['../dataset/MJ/MJ_train/',
-            '../dataset/MJ/MJ_test/',
-            '../dataset/MJ/MJ_valid/',
-            '../dataset/ST'],
+    gt_file=['../data/train/',],
     num_worker=16,
     # model_dir ='model/test',
     model_dir='models/reconstruct_CDistNet_3_10', 
     num_epochs=10,
     # gpu_device_ids=[1,2,3,4,5,6,7],
-    batch_size=1400,  # 4gpu 1800
+    batch_size=197,  # 4gpu 1800
     model=None,
     # model ='models/new_baseline_sem_pos_pos_vis_3_32*128_tps_resnet45_epoch_6/model_epoch_5.pth',
     # current_epoch=6,  # epoch start
@@ -58,17 +55,12 @@ val = dict(
     model='models/baseline_two_32*100_1d_2cnn-test/model_epoch_1.pth',  # abandon
     device='cuda',
     # is_val_gt=True,
-    image_dir='datasets/NewVersion/val_data',
+#     image_dir='datasets/NewVersion/val_data',
     gt_file= [
-               './dataset/eval/IC13_857',
-               './dataset/eval/SVT',
-                './dataset/eval/IIIT5k_3000',
-               './dataset/eval/IC15_1811',
-                './dataset/eval/SVTP',
-               './dataset/eval/CUTE80'],
+               './data/test',],
     # gt_file=['datasets/NewVersion/val_data/val_data.txt'],
     # gt_file='../dataset/MJ/MJ_valid/',
-    batch_size=800,  # 4gpu 1800
+    batch_size=197,  # 4gpu 1800
     num_worker=16,
 )
 
@@ -86,14 +78,9 @@ test = dict(
     avg_all=False,  
     is_test_gt=False,
     image_dir= None,     #if is_test_gt == False,needn't use image_dir
-    test_list=[
-               './dataset/eval/IC13_857',
-               './dataset/eval/SVT',
-                './dataset/eval/IIIT5k_3000',
-               './dataset/eval/IC15_1811',
-                './dataset/eval/SVTP',
-               './dataset/eval/CUTE80'
-    ],
+    
+    gt_file= [
+               './data/test',],
     batch_size=128,
     num_worker=8,
     model_dir='models/reconstruct_CDistNetv3_3_10',  # load test model
