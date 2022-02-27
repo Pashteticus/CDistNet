@@ -1,10 +1,10 @@
 dst_vocab = 'cdistnet/utils/dict_36.txt'   
-dst_vocab_size = 112
+dst_vocab_size = 116
 rgb2gray =False
 keep_aspect_ratio = False
 width = 128 #100
 height = 32 #32
-max_width = 280
+max_width = 180
 is_lower = False 
 cnn_num = 2
 leakyRelu = False
