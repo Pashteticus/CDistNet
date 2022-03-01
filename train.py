@@ -90,6 +90,7 @@ def train(cfg,args):
         optimizer = WarmupOptim(
             optim.Adam(
                 filter(lambda x: x.requires_grad, model.parameters()),
+                lr=1e-5,
                 betas=(0.9, 0.98),
                 eps=1e-09,
             ),
@@ -98,6 +99,7 @@ def train(cfg,args):
         optimizer = ScheduledOptim(
             optim.Adam(
                 filter(lambda x: x.requires_grad, model.parameters()),
+                lr=1e-5,
                 betas=(0.9, 0.98),
                 eps=1e-09,
             ),
