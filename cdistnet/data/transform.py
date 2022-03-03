@@ -23,7 +23,7 @@ def sample_uniform(low, high, size=None):
     return np.random.uniform(low, high, size=size)
 
 
-class ExtraLinesAugmentation:
+class ExtraLinesAugmentation(object):
     '''
     Add random black lines to an image
     Args:
@@ -31,11 +31,11 @@ class ExtraLinesAugmentation:
         width_of_lines (int): width of lines
     '''
 
-    def init(self, number_of_lines: int = 1, width_of_lines: int = 10):
+    def __init__(self, number_of_lines: int = 1, width_of_lines: int = 10):
         self.number_of_lines = number_of_lines
         self.width_of_lines = width_of_lines
       
-    def call(self, img):
+    def __call__(self, img):
         '''
         Args:
           img (PIL Image): image to draw lines on
