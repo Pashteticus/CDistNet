@@ -190,7 +190,7 @@ class CVRandomAffine(object):
         return angle, translations, scale, shear
 
     def __call__(self, img):
-        src_h, src_w = img.shape[:2]
+        src_h, src_w = np.array(img).shape[:2]
         angle, translate, scale, shear = self.get_params(
             self.degrees, self.translate, self.scale, self.shear, src_h)
 
@@ -238,7 +238,7 @@ class CVRandomPerspective(object):
         return np.array(startpoints, dtype=np.float32), np.array(endpoints, dtype=np.float32)
 
     def __call__(self, img):
-        height, width = img.shape[:2]
+        height, width = np.array(img).shape[:2]
         startpoints, endpoints = self.get_params(width, height, self.distortion)
         M = cv2.getPerspectiveTransform(startpoints, endpoints)
 
@@ -275,7 +275,7 @@ class CVRescale(object):
 
     def __call__(self, img):
         if self.factor == 0: return img
-        src_h, src_w = img.shape[:2]
+        src_h, src_w = np.array(img).shape[:2]
         cur_w, cur_h = self.base_w, self.base_h
         scale_img = cv2.resize(img, (cur_w, cur_h), interpolation=get_interpolation())
         for _ in range(self.factor):
@@ -295,7 +295,7 @@ class CVGaussianNoise(object):
             raise Exception('degree must be number or list with length 2')
 
     def __call__(self, img):
-        noise = np.random.normal(self.mean, self.var ** 0.5, img.shape)
+        noise = np.random.normal(self.mean, self.var ** 0.5, np.array(img).shape)
         img = np.clip(img + noise, 0, 255).astype(np.uint8)
         return img
 
