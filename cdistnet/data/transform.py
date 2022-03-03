@@ -4,10 +4,12 @@ import random
 
 import cv2
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
+import PIL
 from torchvision import transforms
 from torchvision.transforms import Compose
-
+import torch
+import torch.nn.functional as F
 
 def sample_asym(magnitude, size=None):
     return np.random.beta(1, 4, size) * magnitude
@@ -20,6 +22,33 @@ def sample_sym(magnitude, size=None):
 def sample_uniform(low, high, size=None):
     return np.random.uniform(low, high, size=size)
 
+
+class ExtraLinesAugmentation:
+    '''
+    Add random black lines to an image
+    Args:
+        number_of_lines (int): number of black lines to add
+        width_of_lines (int): width of lines
+    '''
+
+    def init(self, number_of_lines: int = 1, width_of_lines: int = 10):
+        self.number_of_lines = number_of_lines
+        self.width_of_lines = width_of_lines
+      
+    def call(self, img):
+        '''
+        Args:
+          img (PIL Image): image to draw lines on
+        Returns:
+          PIL Image: image with drawn lines
+        '''
+        draw = ImageDraw.Draw(img)
+        for _ in range(self.number_of_lines):
+            x1 = random.randint(0, np.array(img).shape[1]); y1 = random.randint(0, np.array(img).shape[0])
+            x2 = random.randint(0, np.array(img).shape[1]); y2 = random.randint(0, np.array(img).shape[0])
+            draw.line((x1, y1, x2 + 100, y2), fill=0, width=self.width_of_lines)
+
+        return img
 
 def get_interpolation(type='random'):
     if type == 'random':
