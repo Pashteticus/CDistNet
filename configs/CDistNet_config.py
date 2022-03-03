@@ -35,12 +35,12 @@ train = dict(
     shared_embedding=False,  # not used
     device='cuda',
     gt_file=['data/train/',],
-    num_worker=16,
+    num_worker=8,
     # model_dir ='model/test',
     model_dir='models/reconstruct_CDistNet_3_10', 
     num_epochs=10,
     # gpu_device_ids=[1,2,3,4,5,6,7],
-    batch_size=500,  # 4gpu 1800
+    batch_size=400,  # 4gpu 1800
     model=None,
     # model ='models/new_baseline_sem_pos_pos_vis_3_32*128_tps_resnet45_epoch_6/model_epoch_5.pth',
     # current_epoch=6,  # epoch start
@@ -60,8 +60,8 @@ val = dict(
                'data/test',],
     # gt_file=['datasets/NewVersion/val_data/val_data.txt'],
     # gt_file='../dataset/MJ/MJ_valid/',
-    batch_size=500,  # 4gpu 1800
-    num_worker=16,
+    batch_size=400,  # 4gpu 1800
+    num_worker=8,
 )
 
 
@@ -81,7 +81,7 @@ test = dict(
     
     gt_file= [
                'data/test',],
-    batch_size=500,
+    batch_size=400,
     num_worker=8,
     model_dir='models/reconstruct_CDistNetv3_3_10',  # load test model
     script_path='utils/Evaluation_TextRecog/script.py',
