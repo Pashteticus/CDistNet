@@ -112,7 +112,6 @@ class TXTDataset(Dataset):
         if self.is_test==False and self.data_aug:
             self.augment_tfs = transforms.Compose([
                 ExtraLinesAugmentation(),
-                CVRandomRotation(),
                 CVGaussianNoise(),
                 CVGeometry(degrees=45, translate=(0.0, 0.0), scale=(0.5, 2.), shear=(45, 15), distortion=0.5, p=0.5),
                 CVDeterioration(var=20, degrees=6, factor=4, p=0.25),
@@ -234,7 +233,6 @@ class LMDBDataset(Dataset):
         if self.is_test==False and self.data_aug:
             self.augment_tfs = transforms.Compose([
                 ExtraLinesAugmentation(),
-                CVRandomRotation(),
                 CVGaussianNoise(),
                 CVGeometry(degrees=45, translate=(0.0, 0.0), scale=(0.5, 2.), shear=(45, 15), distortion=0.5, p=0.5),
                 CVDeterioration(var=20, degrees=6, factor=4, p=0.25),
