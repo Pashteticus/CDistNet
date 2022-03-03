@@ -79,7 +79,7 @@ class CVRandomRotation(object):
 
     def __call__(self, img):
         angle = self.get_params(self.degrees)
-        src_h, src_w = img.shape[:2]
+        src_w, src_h = img.size
         M = cv2.getRotationMatrix2D(center=(src_w / 2, src_h / 2), angle=angle, scale=1.0)
         abs_cos, abs_sin = abs(M[0, 0]), abs(M[0, 1])
         dst_w = int(src_h * abs_sin + src_w * abs_cos)
