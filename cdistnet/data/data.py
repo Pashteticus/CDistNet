@@ -17,7 +17,7 @@ from mmcv import Config
 from tqdm import tqdm
 import lmdb
 
-from cdistnet.data.transform import CVGeometry, CVColorJitter, CVDeterioration
+from cdistnet.data.transform import *
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
